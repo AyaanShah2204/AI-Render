@@ -76,7 +76,6 @@ def handle_success(response, filename_prefix):
         return operators.handle_error("Couldn't write to temp file.", "temp_file_write")
 
     # return the temp file
-    operators.handle_error("Shark API Stuff is complete")
     return output_file
 
 
@@ -145,3 +144,6 @@ def get_image_format():
 
 def supports_negative_prompts():
     return True
+
+def supports_choosing_model():
+    return False
