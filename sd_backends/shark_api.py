@@ -76,6 +76,7 @@ def handle_success(response, filename_prefix):
         return operators.handle_error("Couldn't write to temp file.", "temp_file_write")
 
     # return the temp file
+    operators.handle_error("Shark API Stuff is complete")
     return output_file
 
 
@@ -135,7 +136,7 @@ def max_image_size():
 
 
 def supports_upscaling():
-    return True
+    return False
 
 
 def get_image_format():
