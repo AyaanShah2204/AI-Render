@@ -129,18 +129,14 @@ def get_server_url(path):
 def min_image_size():
     return 128 * 128
 
-
 def max_image_size():
     return 2048 * 2048
-
 
 def supports_upscaling():
     return False
 
-
 def get_image_format():
     return 'PNG'
-
 
 def supports_negative_prompts():
     return True
