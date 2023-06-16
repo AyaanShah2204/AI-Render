@@ -1,6 +1,7 @@
 import bpy
 import base64
 import requests
+import random
 from .. import (
     config,
     operators,
@@ -40,7 +41,38 @@ def generate(params, img_file, filename_prefix, props):
         return handle_error(response)
 
 
-# TODO: Upscaler API
+# TODO: Upscaler API for shark could have more frontend options
+def upscale(img_file, filename_prefix, props):
+
+    data = {
+        "prompt" : "",
+        "negative_prompt" : "",
+        "seed" : random.randint(1000000000, 2147483647),
+        "height" : utils.sanitized_upscaled_height(max_image_size()),
+        "width" : utils.sanitized_upscaled_width(max_image_size()),
+        "steps" : 50,
+        "noise_level" : 20,
+        "cfg_scale" : 7
+    }
+
+    data["init_images"] = ["data:image/png;base64," + base64.b64encode(img_file.read()).decode()]
+    img_file.close()
+
+    try:
+        server_url = get_server_url("/sdapi/v1/upscaler")
+    except:
+        return operators.handle_error(f"You need to specify a location for the local Stable Diffusion server in the add-on preferences. [Get help]({config.HELP_WITH_LOCAL_INSTALLATION_URL})", "local_server_url_missing")
+
+    response = do_post(server_url, data)
+
+    if response == False:
+        return False
+    
+    if response.status_code == 200:
+        return handle_success(response, filename_prefix)
+    else:
+        return handle_error(response)
+
 
 
 def handle_success(response, filename_prefix):
@@ -131,11 +163,11 @@ def min_image_size():
 
 
 def max_image_size():
-    return 2048 * 2048
+    return 512 * 512
 
-
+# TODO: Change to tru when upscaler is tested.
 def supports_upscaling():
-    return False
+    return True
 
 
 def get_image_format():
