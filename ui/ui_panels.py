@@ -461,6 +461,11 @@ class AIR_PT_upscale(bpy.types.Panel):
             utils.label_multiline(box, text=f"Upscaling is not supported by {utils.sd_backend_formatted_name()}. If you'd like to upscale your image, switch to DreamStudio or Automatic1111 in AI Render's preferences.", icon="ERROR", width=width_guess)
             return
 
+
+        row = layout.row()
+        sub = row.column()
+        sub.label(text="Hello this is Ayaan")
+
         # if the upscaler model list hasn't been loaded, show message and button
         if not AIR_PT_upscale.is_upscaler_model_list_loaded(context):
             utils.label_multiline(layout, text="To get started upscaling, load the available upscaler models", icon="ERROR", width=width_guess)
@@ -468,6 +473,9 @@ class AIR_PT_upscale(bpy.types.Panel):
             return
 
 
+        row = layout.row()
+        sub = row.column()
+        sub.label(text="Hello this is Ayaan")
 
         # upscale settings
         row = layout.row()
