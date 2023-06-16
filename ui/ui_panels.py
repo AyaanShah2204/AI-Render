@@ -439,7 +439,7 @@ class AIR_PT_upscale(bpy.types.Panel):
     @classmethod
     def does_backend_support_reloading_upscaler_model_list(cls, context):
         return utils.get_active_backend().supports_reloading_upscaler_models()
-x
+
     @classmethod
     def are_upscaled_dimensions_small_enough(cls, context):
         return not utils.are_upscaled_dimensions_too_large(context.scene)
