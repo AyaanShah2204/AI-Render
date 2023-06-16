@@ -451,6 +451,10 @@ class AIR_PT_upscale(bpy.types.Panel):
 
         width_guess = 220
 
+        row = layout.row()
+        sub = row.column()
+        sub.label(text="Hello this is Ayaan")
+
         # if backend does not support upscaling, show message
         if not AIR_PT_upscale.does_backend_support_upscaling(context):
             box = layout.box()
@@ -462,6 +466,8 @@ class AIR_PT_upscale(bpy.types.Panel):
             utils.label_multiline(layout, text="To get started upscaling, load the available upscaler models", icon="ERROR", width=width_guess)
             layout.operator(operators.AIR_OT_automatic1111_load_upscaler_models.bl_idname, text="Load Upscaler Models", icon="FILE_REFRESH")
             return
+
+
 
         # upscale settings
         row = layout.row()
