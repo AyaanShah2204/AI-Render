@@ -439,7 +439,7 @@ class AIR_PT_upscale(bpy.types.Panel):
     @classmethod
     def does_backend_support_reloading_upscaler_model_list(cls, context):
         return utils.get_active_backend().supports_reloading_upscaler_models()
-
+x
     @classmethod
     def are_upscaled_dimensions_small_enough(cls, context):
         return not utils.are_upscaled_dimensions_too_large(context.scene)
@@ -461,13 +461,16 @@ class AIR_PT_upscale(bpy.types.Panel):
             utils.label_multiline(box, text=f"Upscaling is not supported by {utils.sd_backend_formatted_name()}. If you'd like to upscale your image, switch to DreamStudio or Automatic1111 in AI Render's preferences.", icon="ERROR", width=width_guess)
             return
 
-
         row = layout.row()
         sub = row.column()
         sub.label(text="Hello this is Ayaan")
 
         # if the upscaler model list hasn't been loaded, show message and button
         if not AIR_PT_upscale.is_upscaler_model_list_loaded(context):
+            row = layout.row()
+            sub = row.column()
+            sub.label(text="Hello this is Ayaan")
+
             utils.label_multiline(layout, text="To get started upscaling, load the available upscaler models", icon="ERROR", width=width_guess)
             layout.operator(operators.AIR_OT_automatic1111_load_upscaler_models.bl_idname, text="Load Upscaler Models", icon="FILE_REFRESH")
             return
