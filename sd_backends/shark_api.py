@@ -180,3 +180,6 @@ def supports_negative_prompts():
 
 def supports_choosing_model():
     return False
+
+def is_upscaler_model_list_loaded():
+    return True
