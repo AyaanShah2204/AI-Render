@@ -451,6 +451,8 @@ class AIR_PT_upscale(bpy.types.Panel):
 
         width_guess = 220
 
+        AIR_PT_upscale.does_backend_support_upscaling(context)
+
         row = layout.row()
         sub = row.column()
         sub.label(text="Hello this is Ayaan")
