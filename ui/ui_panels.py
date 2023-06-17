@@ -452,10 +452,12 @@ class AIR_PT_upscale(bpy.types.Panel):
         width_guess = 220
 
         
-
+        if AIR_PT_upscale.does_backend_support_upscaling(context):
+            print("Hello")
+        
         row = layout.row()
         sub = row.column()
-        sub.label(text=AIR_PT_upscale.does_backend_support_upscaling(context))
+        sub.label(text="bla")
 
         # if backend does not support upscaling, show message
         if not AIR_PT_upscale.does_backend_support_upscaling(context):
