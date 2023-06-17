@@ -452,7 +452,7 @@ class AIR_PT_upscale(bpy.types.Panel):
         width_guess = 220
 
         
-        if AIR_PT_upscale.does_backend_support_upscaling(context):
+        if AIR_PT_upscale.is_upscaler_model_list_loaded(context):
             row = layout.row()
             sub = row.column()
             sub.label(text="bla1")
