@@ -45,17 +45,18 @@ def generate(params, img_file, filename_prefix, props):
 def upscale(img_file, filename_prefix, props):
 
     data = {
-        "prompt" : "",
-        "negative_prompt" : "",
-        "seed" : random.randint(1000000000, 2147483647),
-        "height" : utils.sanitized_upscaled_height(max_image_size()),
-        "width" : utils.sanitized_upscaled_width(max_image_size()),
-        "steps" : 50,
-        "noise_level" : 20,
-        "cfg_scale" : 7
+        "prompt": "",
+        "negative_prompt": "",
+        "seed": random.randint(1000000000, 2147483647),
+        "height": utils.sanitized_upscaled_height(max_image_size()),
+        "width": utils.sanitized_upscaled_width(max_image_size()),
+        "steps": 50,
+        "noise_level": 20,
+        "cfg_scale": 7
     }
 
-    data["init_images"] = ["data:image/png;base64," + base64.b64encode(img_file.read()).decode()]
+    data["init_images"] = ["data:image/png;base64," +
+                           base64.b64encode(img_file.read()).decode()]
     img_file.close()
 
     try:
@@ -67,12 +68,11 @@ def upscale(img_file, filename_prefix, props):
 
     if response == False:
         return False
-    
+
     if response.status_code == 200:
         return handle_success(response, filename_prefix)
     else:
         return handle_error(response)
-
 
 
 def handle_success(response, filename_prefix):
@@ -165,7 +165,7 @@ def min_image_size():
 def max_image_size():
     return 512 * 512
 
-# TODO: Change to tru when upscaler is tested.
+
 def supports_upscaling():
     return True
 
@@ -180,6 +180,7 @@ def supports_negative_prompts():
 
 def supports_choosing_model():
     return False
+
 
 def is_upscaler_model_list_loaded(context=None):
     return True
